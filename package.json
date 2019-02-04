@@ -14,7 +14,8 @@
   "node-red": {
     "nodes": {
       "node-red-contrib-sharepoint": "sharepoint.js"
-    },
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/german-st/node-red-contrib-sharepoint.git"

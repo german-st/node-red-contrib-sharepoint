@@ -59,6 +59,7 @@ var sprequest = require('sp-request');
           }
         else //POST
           {
+
               var digestURI = serviceUri.substring(0, serviceUri.indexOf('/_api'));
               spr.requestDigest(digestURI)
                 .then(digest => {
@@ -68,15 +69,13 @@ var sprequest = require('sp-request');
                   };
                   Object.assign(spHeaders, msg.headers||''); //Headers joining
                   //Post query to SharePoint
-                  return spr.post(encodeURI(serviceUri), {
-                    body: JSON.stringify(msg.payload||''),
-                    headers: {
-                      spHeaders
-                    }
+                  return spr.post((serviceUri), {
+                    body: msg.payload||'',
+                    headers: spHeaders
                   });
                 })
                 .then(response => {
-                    msg.sharepointresult = response.body.d;
+                    msg.sharepointresult = response;
                     msg.resCodeSharepoint = response.statusCode;
                     node.send([msg, null]);
                   }
